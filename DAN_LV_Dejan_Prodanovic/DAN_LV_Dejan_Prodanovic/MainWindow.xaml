@@ -40,7 +40,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="1"
-                            Grid.Column="3">
+                            Grid.Column="2">
                     <Label Foreground="White"
                            FontSize="24">Dobrodosli u Pan Pizza</Label>
                 </StackPanel>
@@ -103,6 +103,70 @@
                                   Command="{Binding Path=ChooseChilliPaper}"
                                   CommandParameter="{Binding ElementName=cbChilliPaper, 
                               Path=IsChecked}"></CheckBox>
+                        <StackPanel Margin="20 20"
+                                    Orientation="Vertical">
+                            <Label Foreground="White"
+                                   FontSize="15">Izaberite velicinu vase pizze</Label>
+                            <StackPanel  
+                                         
+                                        Orientation="Horizontal"
+                                        Margin="15">
+                                <RadioButton Width="50"
+                                             Content="mala"
+                                             Command="{Binding Path=ChooseSize}"
+                                             Foreground="White"
+                                             Name="cbSmall"
+                                             CommandParameter="{Binding ElementName=cbSmall, Path=Content}"
+                                             IsChecked="True"></RadioButton>
+                                <RadioButton Width="60"
+                                             Content="srednja"
+                                             Command="{Binding Path=ChooseSize}"
+                                             Name="cbMiddle"
+                                             Foreground="White"
+                                             CommandParameter="{Binding ElementName=cbMiddle, Path=Content}"></RadioButton>
+                                <RadioButton Width="60"
+                                             Content="velika"
+                                             Command="{Binding Path=ChooseSize}"
+                                             Name="cbLarge"
+                                             Foreground="White"
+                                             CommandParameter="{Binding ElementName=cbLarge, Path=Content}"></RadioButton>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                        Margin="20">
+                                <Button Name="btnNew"
+                                        Content="Nova porudzbina"
+                                        Width="110"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,20,0"
+                                        Command="{Binding NewOrder, UpdateSourceTrigger=PropertyChanged}"
+                                        FontWeight="Bold" />
+                                <Button Name="btnCount"
+                                        Content="Izracunaj cenu"
+                                        Width="110"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,20,0"
+                                        Command="{Binding Subbmit, UpdateSourceTrigger=PropertyChanged}"
+                                        FontWeight="Bold" />
+                                <Button Name="btnPhone"
+                                        Content="Posalji SMS"
+                                        Width="110"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,20,0"
+                                        Command="{Binding Send, UpdateSourceTrigger=PropertyChanged}"
+                                        FontWeight="Bold" />
+                                <Button Name="btnClose"
+                                        Content="Zatvori"
+                                        Width="110"
+                                        Height="30"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,10,20,0"
+                                        Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
+                                        FontWeight="Bold" />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel  
                                  Orientation="Vertical"
@@ -137,83 +201,24 @@
                               Path=IsChecked}"></CheckBox>
                         
                     </StackPanel>
+                    <StackPanel Orientation="Vertical"
+                                Margin="10"
+                                Visibility="{Binding ViewMakeOrder, 
+                                UpdateSourceTrigger=PropertyChanged}">
+                        <StackPanel Height="400" Width="230"
+                                    Background="LightBlue">
+                            <TextBlock   
+                                       Margin="3"
+                                       Foreground="White"
+                                         FontSize="15"
+                                       Text="{Binding TotalAmount}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
                 </StackPanel>
               
                
-                <StackPanel Grid.Row="5"
-                            Grid.Column="2"
-                            Margin="20 20"
-                            Orientation="Vertical">
-                    <Label Foreground="White"
-                           FontSize="15">Izaberite velicinu vase pizze</Label>
-                    <StackPanel Grid.Column="2"
-                                Grid.Row="5"
-                                Orientation="Horizontal"
-                                Margin="15">
-                        <RadioButton Width="50"
-                                     Content="mala"
-                                     Command="{Binding Path=ChooseSize}"
-                                     Foreground="White"
-                                     Name="cbSmall"
-                                     CommandParameter="{Binding ElementName=cbSmall, Path=Content}"
-                                     IsChecked="True"></RadioButton>
-                        <RadioButton Width="60"
-                                     Content="srednja"
-                                     Command="{Binding Path=ChooseSize}"
-                                     Name="cbMiddle"
-                                     Foreground="White"
-                                     CommandParameter="{Binding ElementName=cbMiddle, Path=Content}"></RadioButton>
-                        <RadioButton Width="60"
-                                     Content="velika"
-                                     Command="{Binding Path=ChooseSize}"
-                                     Name="cbLarge"
-                                     Foreground="White"
-                                     CommandParameter="{Binding ElementName=cbLarge, Path=Content}"></RadioButton>
-                    </StackPanel>
-                </StackPanel>
-               
-                <StackPanel Grid.Column="3"
-                            Grid.Row="6"
-                            Margin="20"
-                            Orientation="Vertical">
-                    <Label Foreground="White" FontSize="20">Nesto pise</Label>
-                    <StackPanel  
-                                Orientation="Horizontal"
-                                Margin="20">
-                        <Button Name="btnNew"
-                                Content="Nova porudzbina"
-                                Width="110"
-                                Height="30"
-                                HorizontalAlignment="Center"
-                                Margin="0,0,20,0"
-                                Command="{Binding NewOrder, UpdateSourceTrigger=PropertyChanged}"
-                                FontWeight="Bold" />
-                        <Button Name="btnCount"
-                                Content="Izracunaj cenu"
-                                Width="100"
-                                Height="30"
-                                HorizontalAlignment="Center"
-                                Margin="0,0,20,0"
-                                Command="{Binding Subbmit, UpdateSourceTrigger=PropertyChanged}"
-                                FontWeight="Bold" />
-                        <Button Name="btnPhone"
-                                Content="Posalji SMS"
-                                Width="100"
-                                Height="30"
-                                HorizontalAlignment="Center"
-                                Margin="0,0,20,0"
-                                Command="{Binding Send, UpdateSourceTrigger=PropertyChanged}"
-                                FontWeight="Bold" />
-                        <Button Name="btnClose"
-                                Content="Zatvori"
-                                Width="100"
-                                Height="30"
-                                HorizontalAlignment="Center"
-                                Margin="0,0,20,0"
-                                Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
-                                FontWeight="Bold" />
-                    </StackPanel>
-                </StackPanel>
+         
+                 
                
             </Grid>
         </Border>

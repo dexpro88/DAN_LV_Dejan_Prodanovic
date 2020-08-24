@@ -15,6 +15,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
     {
         MainWindow view;
         IngredientData ingredientData;
+        List<bool> checkBoxes;
 
         public bool orderPerformed = false;
         int counter = 0;
@@ -26,9 +27,21 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                    
             ingredientsList = new List<Ingredient>();
             ingredientData = new IngredientData();
+            checkBoxes = new List<bool>();
+            checkBoxes.Add(Ham);
+            checkBoxes.Add(Mayo);
+            checkBoxes.Add(Sesame);
+            checkBoxes.Add(Cheese);
+            checkBoxes.Add(Olives);
+            checkBoxes.Add(Salami);
+            checkBoxes.Add(Kulen);
+            checkBoxes.Add(Ketchup);
+            checkBoxes.Add(ChilliPaper);
+            checkBoxes.Add(Oregano);
+
         }
 
-        
+
 
         private List<Ingredient> ingredientsList;
       
@@ -61,7 +74,18 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
             return true;
         }
 
-       
+
+        private string totalAmount;
+
+        public string TotalAmount
+        {
+            get { return totalAmount; }
+            set
+            {
+                totalAmount = value;
+                OnPropertyChanged("TotalAmount");
+            }
+        }
 
         private bool salami;
 
@@ -204,7 +228,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
 
                 if (Salami == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Salami");
+                    ingredient = ingredientData.GetIngredientByName("Salama");
                     if (ingredient!=null)
                     {
                         ingredientsList.Add(ingredient);
@@ -212,7 +236,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Ham == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Ham");
+                    ingredient = ingredientData.GetIngredientByName("Sunka");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -220,7 +244,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Mayo == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Mayo");
+                    ingredient = ingredientData.GetIngredientByName("Majonez");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -236,7 +260,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Ketchup == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Ketchup");
+                    ingredient = ingredientData.GetIngredientByName("Kecap");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -245,7 +269,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                  
                 if (ChilliPaper == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("ChilliPaper");
+                    ingredient = ingredientData.GetIngredientByName("Ljuta paprika");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -253,7 +277,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Olives == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Olives");
+                    ingredient = ingredientData.GetIngredientByName("Masline");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -261,7 +285,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Oregano == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Oregano");
+                    ingredient = ingredientData.GetIngredientByName("Origano");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -269,7 +293,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Sesame == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Sesame");
+                    ingredient = ingredientData.GetIngredientByName("Susam");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
@@ -277,22 +301,73 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
                 }
                 if (Cheese == true)
                 {
-                    ingredient = ingredientData.GetIngredientByName("Cheese");
+                    ingredient = ingredientData.GetIngredientByName("Sir");
                     if (ingredient != null)
                     {
                         ingredientsList.Add(ingredient);
                     }
                 }
-
+                
                 orderPerformed = true;
+
+                ViewMakeOrder = Visibility.Visible;
+
+                decimal totalPrice = 0;
+
                 foreach (var item in ingredientsList)
                 {
-                    MessageBox.Show(item.Name);
+                    totalPrice += item.Price;
                 }
-              
+
+                if (Size.Equals("srednja"))
+                {
+                    totalPrice *= 1.2M;
+                    
+                }
+                else if (Size.Equals(Size))
+                {
+                    totalPrice *= 1.5M;
+                    
+                }
+                string str = String.Format("Ukupna cena: {0}",totalPrice);
+                StringBuilder sb = new StringBuilder();
+                sb.Append(str);
+                sb.Append("\n");
+                sb.Append("*********************");
+                sb.Append("\n");
+               
+                foreach (var item in ingredientsList)
+                {
+                    string str1 = string.Format("{0} {1} euro",item.Name,item.Price);
+                    sb.Append(str1);
+                    sb.Append("\n");
+                }
+
+                sb.Append("\n");
+                sb.Append("\n");
+
+                string koef="";
+
+                if (Size.Equals("mala"))
+                {
+                    koef = "1";
+                }
+                else if (Size.Equals("srednja"))
+                {
+                    koef = "1.2";
+                }
+                else if (Size.Equals("velika"))
+                {
+                    koef = "1.5";
+                }
+                string str2 = string.Format("Za velicinu {0} zbir\ncena sastojaka se mnozi sa {1}",
+                    Size, koef);
+
+                sb.Append(str2);
+
+                TotalAmount = sb.ToString();
 
 
-                
             }
             catch (Exception ex)
             {
@@ -333,9 +408,15 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
             try
             {
 
-                
 
-                orderPerformed = true;
+                MainWindow newView = new MainWindow();
+                newView.Show();
+                view.Close();
+                orderPerformed = false;
+                for (int i = 0; i < 10; i++)
+                {
+                    checkBoxes[i] = false;
+                }
                 
 
 
@@ -764,7 +845,7 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
         private void ChooseCheeseExecute(object parameter)
         {
 
-            Sesame = (bool)parameter;
+            Cheese = (bool)parameter;
             if (Cheese == true)
             {
                 counter++;
@@ -789,5 +870,68 @@ namespace DAN_LV_Dejan_Prodanovic.ViewModel
             }
 
         }
+
+        private string size = "mala";
+
+        public string Size
+        {
+            get { return size; }
+            set
+            {
+                size = value;
+                OnPropertyChanged("Size");
+            }
+        }
+
+        private Visibility viewMakeOrder = Visibility.Hidden;
+        public Visibility ViewMakeOrder
+        {
+            get
+            {
+                return viewMakeOrder;
+            }
+            set
+            {
+                viewMakeOrder = value;
+                OnPropertyChanged("ViewMakeOrder");
+            }
+        }
+
+        private ICommand chooseSize;
+        public ICommand ChooseSize
+        {
+            get
+            {
+                if (chooseSize == null)
+                {
+                    chooseSize = new RelayCommand(ChooseSizeExecute,
+                        CanChooseSizeExecute);
+                }
+                return chooseSize;
+            }
+        }
+
+        private void ChooseSizeExecute(object parameter)
+        {
+            Size = (string)parameter;
+           
+        }
+
+        private bool CanChooseSizeExecute(object parameter)
+        {
+            if (orderPerformed == true)
+            {
+                return false;
+            }
+            if (parameter != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -15,9 +15,10 @@ namespace DAN_LV_Dejan_Prodanovic.DataAcces
         public IngredientData()
         {
             Ingredients = new List<Ingredient>();
+
             Ingredient ingredient = new Ingredient()
             {
-                Name = "Salami",
+                Name = "Salama",
                 Price = 10
             };
 
@@ -25,14 +26,14 @@ namespace DAN_LV_Dejan_Prodanovic.DataAcces
 
             ingredient = new Ingredient()
             {
-                Name = "Ham",
+                Name = "Sunka",
                 Price = 12
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "Mayo",
+                Name = "Majonez",
                 Price = 15
             };
             Ingredients.Add(ingredient);
@@ -46,42 +47,42 @@ namespace DAN_LV_Dejan_Prodanovic.DataAcces
 
             ingredient = new Ingredient()
             {
-                Name = "Ketchup",
+                Name = "Kecap",
                 Price = 10
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "ChilliPaper",
+                Name = "Ljuta paprika",
                 Price = 14
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "Olives",
+                Name = "Masline",
                 Price = 16
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "Oregano",
+                Name = "Origano",
                 Price = 9
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "Sesame",
+                Name = "Susam",
                 Price = 8
             };
             Ingredients.Add(ingredient);
 
             ingredient = new Ingredient()
             {
-                Name = "Cheese",
+                Name = "Sir",
                 Price = 17
             };
             Ingredients.Add(ingredient);
