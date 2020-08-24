@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:DAN_LV_Dejan_Prodanovic"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="600"
-        Width="800"
+        Height="700"
+        Width="900"
         Background="Orange"
         WindowStartupLocation="CenterScreen">
     <Grid>
@@ -23,10 +23,11 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <!--<RowDefinition Height="200" />-->
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    
                     <RowDefinition Height="200" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+ 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -41,134 +42,179 @@
                 <StackPanel Grid.Row="1"
                             Grid.Column="3">
                     <Label Foreground="White"
-                           FontSize="22">Dobrodosli u Pan Pizza</Label>
+                           FontSize="24">Dobrodosli u Pan Pizza</Label>
                 </StackPanel>
                 
                 <StackPanel Grid.Row="2"
-                            Grid.Column="3">
+                            Grid.Column="2"
+                            Orientation="Vertical"
+                            Margin="20 20">
                     <Label Foreground="White"
                            FontSize="15">Izaberite sastojke za vasu pizzu</Label>
+                    <Label Foreground="White"
+                           FontSize="15">(Morate izabrati bar 3 sastojka)</Label>
                 </StackPanel>
                 <StackPanel  Grid.Column="2"
                              Grid.Row="3"
-                             Orientation="Vertical"
+                             Orientation="Horizontal"
                              Margin="10">
-                    <CheckBox Width="130"
-                              Name="Salami"
-                              Content="Salama"
-                              Foreground="White"
-                              IsChecked="{Binding Salami, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Ham"
-                              Content="Sunka"
-                              Foreground="White"
-                              IsChecked="{Binding Ham, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Kulen"
-                              Content="Kulen"
-                              Foreground="White"
-                              IsChecked="{Binding Kulen, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Ketchup"
-                              Content="Kecap"
-                              Foreground="White"
-                              IsChecked="{Binding Ketchup, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Mayonnaise"
-                              Content="Majonez"
-                              Foreground="White"
-                              IsChecked="{Binding Mayo, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="ChilliPaper"
-                              Content="Ljuta paprika"
-                              Foreground="White"
-                              IsChecked="{Binding ChilliPaper, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                    <StackPanel  
+                                 Orientation="Vertical"
+                                 Margin="10">
+                        <CheckBox Width="130"
+                                  Name="cbSalami"
+                                  Content="Salama"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseSalami}"
+                                  CommandParameter="{Binding ElementName=cbSalami, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbHam"
+                                  Content="Sunka"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseHam}"
+                                  CommandParameter="{Binding ElementName=cbHam, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbKulen"
+                                  Content="Kulen"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseKulen}"
+                                  CommandParameter="{Binding ElementName=cbKulen, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbKetchup"
+                                  Content="Kecap"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseKetchup}"
+                                  CommandParameter="{Binding ElementName=cbKetchup, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbMayonnaise"
+                                  Content="Majonez"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseMayonnaise}"
+                                  CommandParameter="{Binding ElementName=cbMayonnaise, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbChilliPaper"
+                                  Content="Ljuta paprika"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseChilliPaper}"
+                                  CommandParameter="{Binding ElementName=cbChilliPaper, 
+                              Path=IsChecked}"></CheckBox>
+                    </StackPanel>
+                    <StackPanel  
+                                 Orientation="Vertical"
+                                 Margin="10">
+                        <CheckBox Width="130"
+                                  Name="cbOlives"
+                                  Content="Masline"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseOlives}"
+                                  CommandParameter="{Binding ElementName=cbOlives, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbOregano"
+                                  Content="Oregano"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseOregano}"
+                                  CommandParameter="{Binding ElementName=cbOregano, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbSesame"
+                                  Content="Susam"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseSesame}"
+                                  CommandParameter="{Binding ElementName=cbSesame, 
+                              Path=IsChecked}"></CheckBox>
+                        <CheckBox Width="130"
+                                  Name="cbCheese"
+                                  Content="Sir"
+                                  Foreground="White"
+                                  Command="{Binding Path=ChooseCheese}"
+                                  CommandParameter="{Binding ElementName=cbCheese, 
+                              Path=IsChecked}"></CheckBox>
+                        
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel  Grid.Column="3"
-                             Grid.Row="3"
-                             Orientation="Vertical"
-                             Margin="10">
-                  
-                    <CheckBox Width="130"
-                              Name="Olives"
-                              Content="Masline"
-                              Foreground="White"
-                              IsChecked="{Binding Olives, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Oregano"
-                              Content="Origano"
-                              Foreground="White"
-                              IsChecked="{Binding Oregano, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                   
-                    <CheckBox Width="130"
-                              Name="sesame"
-                              Content="Susam"
-                              Foreground="White"
-                              IsChecked="{Binding sesame, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                    <CheckBox Width="130"
-                              Name="Cheese"
-                              Content="Sir"
-                              Foreground="White"
-                              IsChecked="{Binding Cheese, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
-                </StackPanel>
+              
+               
                 <StackPanel Grid.Row="5"
-                            Grid.Column="3">
+                            Grid.Column="2"
+                            Margin="20 20"
+                            Orientation="Vertical">
                     <Label Foreground="White"
                            FontSize="15">Izaberite velicinu vase pizze</Label>
+                    <StackPanel Grid.Column="2"
+                                Grid.Row="5"
+                                Orientation="Horizontal"
+                                Margin="15">
+                        <RadioButton Width="50"
+                                     Content="mala"
+                                     Command="{Binding Path=ChooseSize}"
+                                     Foreground="White"
+                                     Name="cbSmall"
+                                     CommandParameter="{Binding ElementName=cbSmall, Path=Content}"
+                                     IsChecked="True"></RadioButton>
+                        <RadioButton Width="60"
+                                     Content="srednja"
+                                     Command="{Binding Path=ChooseSize}"
+                                     Name="cbMiddle"
+                                     Foreground="White"
+                                     CommandParameter="{Binding ElementName=cbMiddle, Path=Content}"></RadioButton>
+                        <RadioButton Width="60"
+                                     Content="velika"
+                                     Command="{Binding Path=ChooseSize}"
+                                     Name="cbLarge"
+                                     Foreground="White"
+                                     CommandParameter="{Binding ElementName=cbLarge, Path=Content}"></RadioButton>
+                    </StackPanel>
                 </StackPanel>
+               
                 <StackPanel Grid.Column="3"
-                            Grid.Row="7"
-                            Orientation="Horizontal"
-                            Margin="15">
-                    <RadioButton Width="50"
-                                 Content="mala"
-                                 Command="{Binding Path=ChooseSize}"
-                                 Foreground="White"
-                                 Name="cbSmall"
-                                 CommandParameter="{Binding ElementName=cbSmall, Path=Content}"
-                                 IsChecked="True"></RadioButton>
-                    <RadioButton Width="60"
-                                 Content="srednja"
-                                 Command="{Binding Path=ChooseSize}"
-                                 Name="cbMiddle"
-                                 Foreground="White"
-                                 CommandParameter="{Binding ElementName=cbMiddle, Path=Content}"></RadioButton>
-                    <RadioButton Width="60"
-                                 Content="velika"
-                                 Command="{Binding Path=ChooseSize}"
-                                 Name="cbLarge"
-                                 Foreground="White"
-                                 CommandParameter="{Binding ElementName=cbLarge, Path=Content}"></RadioButton>
+                            Grid.Row="6"
+                            Margin="20"
+                            Orientation="Vertical">
+                    <Label Foreground="White" FontSize="20">Nesto pise</Label>
+                    <StackPanel  
+                                Orientation="Horizontal"
+                                Margin="20">
+                        <Button Name="btnNew"
+                                Content="Nova porudzbina"
+                                Width="110"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,20,0"
+                                Command="{Binding NewOrder, UpdateSourceTrigger=PropertyChanged}"
+                                FontWeight="Bold" />
+                        <Button Name="btnCount"
+                                Content="Izracunaj cenu"
+                                Width="100"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,20,0"
+                                Command="{Binding Subbmit, UpdateSourceTrigger=PropertyChanged}"
+                                FontWeight="Bold" />
+                        <Button Name="btnPhone"
+                                Content="Posalji SMS"
+                                Width="100"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,20,0"
+                                Command="{Binding Send, UpdateSourceTrigger=PropertyChanged}"
+                                FontWeight="Bold" />
+                        <Button Name="btnClose"
+                                Content="Zatvori"
+                                Width="100"
+                                Height="30"
+                                HorizontalAlignment="Center"
+                                Margin="0,0,20,0"
+                                Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
+                                FontWeight="Bold" />
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="3"
-                            Grid.Row="8"
-                            Orientation="Horizontal">
-                   
-                    <Button Name="btnConfirm"
-                            Content="Izracunaj cenu"
-                            Width="100"
-                            Height="30"
-                            HorizontalAlignment="Center"
-                            Margin="0,0,20,0"
-                            Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"
-                            FontWeight="Bold" />
-                    <Button Name="btnPhone"
-                            Content="Broj telefona"
-                            Width="100"
-                            Height="30"
-                            HorizontalAlignment="Center"
-                            Margin="0,0,20,0"
-                            Command="{Binding Send, UpdateSourceTrigger=PropertyChanged}"
-                            FontWeight="Bold" />
-                    <Button Name="btnClose"
-                            Content="Zatvori"
-                            Width="100"
-                            Height="30"
-                            HorizontalAlignment="Center"
-                            Margin="0,0,20,0"
-                            Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
-                            FontWeight="Bold" />
-                </StackPanel>
+               
             </Grid>
         </Border>
     </Grid>
